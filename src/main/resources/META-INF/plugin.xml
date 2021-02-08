@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>by.overpass.TwineAndroidPlugin</id>
+    <name>Twine Android</name>
+    <vendor email="pckeycalculator@gmail.com">overpass</vendor>
+
+    <description><![CDATA[
+    Twine tool support for Android Studio.<br>
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="Twine File" implementationClass="by.overpass.twap.lang.TwineFileType"
+                  fieldName="INSTANCE" language="Twine" extensions="twine"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>

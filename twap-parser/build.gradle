@@ -1,0 +1,29 @@
+plugins {
+    id "java"
+    id "org.jetbrains.kotlin.jvm"
+    id "antlr"
+}
+
+group "by.overpass"
+version "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    antlr "org.antlr:antlr4:$antlr4Version"
+    compile "org.antlr:antlr4-runtime:$antlr4Version"
+    testImplementation "junit:junit:$junitVersion"
+}
+
+generateGrammarSource {
+    maxHeapSize = "64m"
+}
+
+test {
+    useJUnit()
+}
+
+tasks.getByName("compileKotlin").dependsOn("generateGrammarSource")

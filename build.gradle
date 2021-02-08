@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.6.5'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.30'
+}
+
+group 'by.overpass'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = "4.13"
+    antlr4Version = "4.9.1"
+}
+
+dependencies {
+    implementation project(":twap-parser")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    testImplementation "junit:junit:$junitVersion"
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2020.3.2'
+}
+patchPluginXml {
+    changeNotes """
+      Initial implementation<br>
+      <em>most HTML tags may be used</em>"""
+}
+test {
+    useJUnit()
+}
