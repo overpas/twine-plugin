@@ -26,4 +26,4 @@ test {
     useJUnit()
 }
 
-tasks.getByName("compileKotlin").dependsOn("generateGrammarSource")
+compileKotlin.dependsOn("generateGrammarSource")

@@ -1,5 +1,6 @@
 package by.overpass.twap.lang
 
+import by.overpass.twap.Twine
 import com.intellij.openapi.fileTypes.LanguageFileType
 import javax.swing.Icon
 
@@ -13,7 +14,7 @@ object TwineFileType : LanguageFileType(TwineLanguage) {
         return "Twine file"
     }
 
-    override fun getDefaultExtension(): String = "twine"
+    override fun getDefaultExtension(): String = Twine.EXT
 
     override fun getIcon(): Icon = twineIcon
 }

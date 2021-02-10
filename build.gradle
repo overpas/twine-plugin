@@ -11,14 +11,17 @@ repositories {
     mavenCentral()
 }
 
+//noinspection GroovyAssignabilityCheck
 ext {
     junitVersion = "4.13"
     antlr4Version = "4.9.1"
+    antlr4IntellijAdaptor = "0.1"
 }
 
 dependencies {
     implementation project(":twap-parser")
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.antlr:antlr4-intellij-adaptor:$antlr4IntellijAdaptor"
     testImplementation "junit:junit:$junitVersion"
 }
 

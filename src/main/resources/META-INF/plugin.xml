@@ -14,6 +14,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Twine File" implementationClass="by.overpass.twap.lang.TwineFileType"
                   fieldName="INSTANCE" language="Twine" extensions="twine"/>
+        <lang.parserDefinition language="Twine"
+                               implementationClass="by.overpass.twap.lang.psi.TwineParserDefinition"/>
     </extensions>
 
     <actions>
