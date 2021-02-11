@@ -11,11 +11,15 @@ repositories {
     mavenCentral()
 }
 
-//noinspection GroovyAssignabilityCheck
 ext {
     junitVersion = "4.13"
     antlr4Version = "4.9.1"
     antlr4IntellijAdaptor = "0.1"
+}
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 dependencies {

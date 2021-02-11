@@ -18,14 +18,15 @@ import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
+import org.antlr.intellij.adaptor.lexer.TokenIElementType
 import org.antlr.intellij.adaptor.parser.ANTLRParserAdaptor
 import org.antlr.v4.runtime.Parser
 import org.antlr.v4.runtime.tree.ParseTree
 
 
-class TwineParserDefinition(
+class TwineParserDefinition : ParserDefinition {
+
     private val psiElementFactory: PsiElementFactory = DefaultPsiElementFactory
-) : ParserDefinition {
 
     override fun createLexer(project: Project?): Lexer {
         return ANTLRLexerAdaptor(TwineLanguage, TwineLexer(null))
@@ -53,7 +54,17 @@ class TwineParserDefinition(
 
     override fun createFile(viewProvider: FileViewProvider): PsiFile = TwineFile(viewProvider)
 
+    override fun spaceExistenceTypeBetweenTokens(left: ASTNode?, right: ASTNode?): ParserDefinition.SpaceRequirements {
+        return ParserDefinition.SpaceRequirements.MAY
+    }
+
     companion object {
+        var id: TokenIElementType
+        init {
+            PSIElementTypeFactory.defineLanguageIElementTypes(TwineLanguage, TwineParser.tokenNames, TwineParser.ruleNames)
+            val tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(TwineLanguage)
+            id = tokenIElementTypes[TwineLexer.ID]
+        }
         val file: IFileElementType = IFileElementType(TwineLanguage)
         val ws: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.WS)
         val comment: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.COMMENT)
