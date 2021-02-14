@@ -42,5 +42,5 @@ comment
 COMMENT : 'comment' ;
 LOCALE : 'en' | 'ru' | 'fi' ;
 ID : [a-zA-Z0-9_]+('.'[a-zA-Z0-9_]+)* ;
-WS : [ \r\t\n]+ -> skip ;
+WS : [ \r\t\n]+ -> channel(HIDDEN) ;
 TEXT: ('='' '*.+?('\n'|EOF)) ;

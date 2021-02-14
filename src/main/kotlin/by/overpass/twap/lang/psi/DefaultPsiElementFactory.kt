@@ -1,4 +1,4 @@
-package by.overpass.twap.lang.psi.factory
+package by.overpass.twap.lang.psi
 
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement

@@ -1,8 +1,6 @@
 package by.overpass.twap.lang.psi
 
 import by.overpass.twap.lang.TwineLanguage
-import by.overpass.twap.lang.psi.factory.DefaultPsiElementFactory
-import by.overpass.twap.lang.psi.factory.PsiElementFactory
 import by.overpass.twap.parser.TwineLexer
 import by.overpass.twap.parser.TwineParser
 import com.intellij.lang.ASTNode
@@ -59,7 +57,7 @@ class TwineParserDefinition : ParserDefinition {
     }
 
     companion object {
-        var id: TokenIElementType
+        val id: TokenIElementType
         init {
             PSIElementTypeFactory.defineLanguageIElementTypes(TwineLanguage, TwineParser.tokenNames, TwineParser.ruleNames)
             val tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(TwineLanguage)

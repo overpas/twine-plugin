@@ -16,5 +16,5 @@ object TwineFileType : LanguageFileType(TwineLanguage) {
 
     override fun getDefaultExtension(): String = Twine.EXT
 
-    override fun getIcon(): Icon = twineIcon
+    override fun getIcon(): Icon = Twine.ICON
 }

@@ -16,6 +16,9 @@
                   fieldName="INSTANCE" language="Twine" extensions="twine"/>
         <lang.parserDefinition language="Twine"
                                implementationClass="by.overpass.twap.lang.psi.TwineParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="Twine"
+                                       implementationClass="by.overpass.twap.lang.TwineSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="by.overpass.twap.lang.TwineColorSettingsPage"/>
     </extensions>
 
     <actions>
