@@ -12,15 +12,11 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.FileViewProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
 import org.antlr.intellij.adaptor.lexer.TokenIElementType
-import org.antlr.intellij.adaptor.parser.ANTLRParserAdaptor
-import org.antlr.v4.runtime.Parser
-import org.antlr.v4.runtime.tree.ParseTree
 
 
 class TwineParserDefinition : ParserDefinition {
@@ -32,13 +28,7 @@ class TwineParserDefinition : ParserDefinition {
     }
 
     override fun createParser(project: Project?): PsiParser {
-        return object : ANTLRParserAdaptor(TwineLanguage, TwineParser(null)) {
-            override fun parse(parser: Parser?, root: IElementType?): ParseTree {
-                return if (root is IFileElementType) {
-                    (parser as TwineParser).twine()
-                } else throw UnsupportedOperationException("Can't parse ${root?.javaClass?.name}")
-            }
-        }
+        return TwineParserAdaptor(TwineLanguage, TwineParser(null))
     }
 
     override fun getFileNodeType(): IFileElementType = file

@@ -1,4 +1,4 @@
-package by.overpass.twap.lang
+package by.overpass.twap.lang.style
 
 import by.overpass.twap.Twine
 import com.intellij.openapi.editor.colors.TextAttributesKey
@@ -38,10 +38,10 @@ class TwineColorSettingsPage : ColorSettingsPage {
 
     companion object {
         private val descriptors = arrayOf(
-            AttributesDescriptor("Id", TwineSyntaxHighlighter.id),
-            AttributesDescriptor("Comment", TwineSyntaxHighlighter.comment),
-            AttributesDescriptor("Text", TwineSyntaxHighlighter.text),
-            AttributesDescriptor("Locale", TwineSyntaxHighlighter.locale)
+            AttributesDescriptor("Id", TwineSyntaxHighlighter.TextAttributes.id),
+            AttributesDescriptor("Comment", TwineSyntaxHighlighter.TextAttributes.comment),
+            AttributesDescriptor("Text", TwineSyntaxHighlighter.TextAttributes.text),
+            AttributesDescriptor("Locale", TwineSyntaxHighlighter.TextAttributes.locale)
         )
     }
 }

@@ -1,4 +1,4 @@
-package by.overpass.twap.lang
+package by.overpass.twap.lang.style
 
 import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory

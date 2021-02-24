@@ -10,6 +10,8 @@
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Twine File" implementationClass="by.overpass.twap.lang.TwineFileType"
@@ -17,8 +19,9 @@
         <lang.parserDefinition language="Twine"
                                implementationClass="by.overpass.twap.lang.psi.TwineParserDefinition"/>
         <lang.syntaxHighlighterFactory language="Twine"
-                                       implementationClass="by.overpass.twap.lang.TwineSyntaxHighlighterFactory"/>
-        <colorSettingsPage implementation="by.overpass.twap.lang.TwineColorSettingsPage"/>
+                                       implementationClass="by.overpass.twap.lang.style.TwineSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="by.overpass.twap.lang.style.TwineColorSettingsPage"/>
+        <externalAnnotator language="Twine" implementationClass="by.overpass.twap.lang.style.TwineAnnotator" />
     </extensions>
 
     <actions>
