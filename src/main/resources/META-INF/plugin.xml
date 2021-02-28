@@ -21,7 +21,9 @@
         <lang.syntaxHighlighterFactory language="Twine"
                                        implementationClass="by.overpass.twap.lang.style.TwineSyntaxHighlighterFactory"/>
         <colorSettingsPage implementation="by.overpass.twap.lang.style.TwineColorSettingsPage"/>
-        <externalAnnotator language="Twine" implementationClass="by.overpass.twap.lang.style.TwineAnnotator" />
+        <externalAnnotator language="Twine" implementationClass="by.overpass.twap.lang.style.TwineAnnotator"/>
+        <codeInsight.lineMarkerProvider language="JAVA"
+                                        implementationClass="by.overpass.twap.lang.TwineLineMarkerProvider"/>
     </extensions>
 
     <actions>

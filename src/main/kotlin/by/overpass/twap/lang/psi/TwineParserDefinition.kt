@@ -31,11 +31,11 @@ class TwineParserDefinition : ParserDefinition {
         return TwineParserAdaptor(TwineLanguage, TwineParser(null))
     }
 
-    override fun getFileNodeType(): IFileElementType = file
+    override fun getFileNodeType(): IFileElementType = Elements.file
 
-    override fun getCommentTokens(): TokenSet = comment
+    override fun getCommentTokens(): TokenSet = Elements.TokenSets.comment
 
-    override fun getWhitespaceTokens(): TokenSet = ws
+    override fun getWhitespaceTokens(): TokenSet = Elements.TokenSets.ws
 
     override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
 
@@ -47,8 +47,9 @@ class TwineParserDefinition : ParserDefinition {
         return ParserDefinition.SpaceRequirements.MAY
     }
 
-    companion object {
+    object Elements {
         val id: TokenIElementType
+
         init {
             PSIElementTypeFactory.defineLanguageIElementTypes(
                 TwineLanguage,
@@ -58,8 +59,13 @@ class TwineParserDefinition : ParserDefinition {
             val tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(TwineLanguage)
             id = tokenIElementTypes[TwineLexer.ID]
         }
+
         val file: IFileElementType = IFileElementType(TwineLanguage)
-        val ws: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.WS)
-        val comment: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.COMMENT)
+
+        object TokenSets {
+            val ws: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.WS)
+            val comment: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.COMMENT)
+            val id: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.ID)
+        }
     }
 }
