@@ -48,7 +48,7 @@ class TwineParserDefinition : ParserDefinition {
     }
 
     object Elements {
-        val id: TokenIElementType
+        private val tokenIElementTypes: List<TokenIElementType>
 
         init {
             PSIElementTypeFactory.defineLanguageIElementTypes(
@@ -56,11 +56,14 @@ class TwineParserDefinition : ParserDefinition {
                 TwineParser.VOCABULARY.tokenNames,
                 TwineParser.ruleNames
             )
-            val tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(TwineLanguage)
-            id = tokenIElementTypes[TwineLexer.ID]
+            tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(TwineLanguage)
         }
 
         val file: IFileElementType = IFileElementType(TwineLanguage)
+
+        operator fun get(id: Int): TokenIElementType {
+            return tokenIElementTypes[id]
+        }
 
         object TokenSets {
             val ws: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.WS)
