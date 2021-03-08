@@ -40,7 +40,7 @@ comment
     ;
 
 COMMENT : 'comment' ;
-LOCALE : 'en' | 'ru' | 'fi' ;
+LOCALE : [a-zA-Z][a-zA-Z] ;
 ID : [a-zA-Z0-9_]+('.'[a-zA-Z0-9_]+)* ;
 WS : [ \r\t\n]+ -> channel(HIDDEN) ;
 TEXT: ('='' '*.+?('\n'|EOF)) ;
