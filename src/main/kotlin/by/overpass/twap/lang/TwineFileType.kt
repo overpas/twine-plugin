@@ -7,7 +7,7 @@ import javax.swing.Icon
 object TwineFileType : LanguageFileType(TwineLanguage) {
 
     override fun getName(): String {
-        return "Twine File"
+        return "Twine"
     }
 
     override fun getDescription(): String {
