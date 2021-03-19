@@ -43,4 +43,4 @@ COMMENT : 'comment' ;
 LOCALE : [a-zA-Z][a-zA-Z] ;
 ID : [a-zA-Z0-9_]+('.'[a-zA-Z0-9_]+)* ;
 WS : [ \r\t\n]+ -> channel(HIDDEN) ;
-TEXT: ('='' '*.+?('\n'|EOF)) ;
+TEXT: '='' '*.*?('\n'|EOF) ;

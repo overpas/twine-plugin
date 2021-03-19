@@ -1,6 +1,5 @@
 package by.overpass.twap.lang.style
 
-import by.overpass.twap.lang.TwineLanguage
 import by.overpass.twap.parser.TwineLexer
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
@@ -9,14 +8,13 @@ import com.intellij.openapi.editor.colors.TextAttributesKey.EMPTY_ARRAY
 import com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.tree.IElementType
-import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor
 import org.antlr.intellij.adaptor.lexer.TokenIElementType
 
 
 class TwineSyntaxHighlighter : SyntaxHighlighterBase() {
 
     override fun getHighlightingLexer(): Lexer {
-        return ANTLRLexerAdaptor(TwineLanguage, TwineLexer(null))
+        return TwineHighlighterLexerAdaptor(TwineLexer(null))
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> =
