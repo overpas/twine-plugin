@@ -4,7 +4,7 @@
     <vendor email="pckeycalculator@gmail.com">overpass</vendor>
 
     <description><![CDATA[
-    Twine tool support for Android Studio.<br>
+    Twine localization tool support for Android Studio.<br>
     ]]></description>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -17,11 +17,11 @@
         <fileType name="Twine File" implementationClass="by.overpass.twap.lang.TwineFileType"
                   fieldName="INSTANCE" language="Twine" extensions="twine"/>
         <lang.parserDefinition language="Twine"
-                               implementationClass="by.overpass.twap.lang.psi.TwineParserDefinition"/>
+                               implementationClass="by.overpass.twap.lang.parsing.TwineParserDefinition"/>
         <lang.syntaxHighlighterFactory language="Twine"
-                                       implementationClass="by.overpass.twap.lang.style.TwineSyntaxHighlighterFactory"/>
-        <colorSettingsPage implementation="by.overpass.twap.lang.style.TwineColorSettingsPage"/>
-        <externalAnnotator language="Twine" implementationClass="by.overpass.twap.lang.style.TwineAnnotator"/>
+                                       implementationClass="by.overpass.twap.lang.style.highlighter.TwineSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="by.overpass.twap.lang.style.highlighter.TwineColorSettingsPage"/>
+        <externalAnnotator language="Twine" implementationClass="by.overpass.twap.lang.style.annotator.TwineAnnotator"/>
         <codeInsight.lineMarkerProvider language="JAVA"
                                         implementationClass="by.overpass.twap.lang.TwineLineMarkerProvider"/>
     </extensions>

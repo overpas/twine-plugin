@@ -1,4 +1,4 @@
-package by.overpass.twap.lang.style
+package by.overpass.twap.lang.style.highlighter
 
 import by.overpass.twap.Twine
 import com.intellij.openapi.editor.colors.TextAttributesKey

@@ -1,7 +1,7 @@
 package by.overpass.twap.lang
 
-import by.overpass.twap.lang.psi.TwineFile
-import by.overpass.twap.lang.psi.TwineParserDefinition
+import by.overpass.twap.lang.parsing.TwineFile
+import by.overpass.twap.lang.parsing.TwineParserDefinition
 import by.overpass.twap.parser.TwineLexer
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement

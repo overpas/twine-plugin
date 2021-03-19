@@ -1,5 +1,6 @@
-package by.overpass.twap.lang.style
+package by.overpass.twap.lang.style.annotator
 
+import by.overpass.twap.lang.style.highlighter.TwineSyntaxHighlighter
 import by.overpass.twap.parser.TwineParser
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder

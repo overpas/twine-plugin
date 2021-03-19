@@ -1,4 +1,4 @@
-package by.overpass.twap.lang.psi
+package by.overpass.twap.lang.parsing
 
 import by.overpass.twap.parser.TwineParser
 import com.intellij.lang.Language

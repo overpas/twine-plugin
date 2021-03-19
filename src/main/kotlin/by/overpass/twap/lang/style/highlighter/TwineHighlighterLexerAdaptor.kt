@@ -1,4 +1,4 @@
-package by.overpass.twap.lang.style
+package by.overpass.twap.lang.style.highlighter
 
 import by.overpass.twap.lang.TwineLanguage
 import by.overpass.twap.parser.TwineLexer
