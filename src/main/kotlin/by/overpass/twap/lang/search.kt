@@ -12,22 +12,17 @@ import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
 
 
-fun Project.findTwineLabels(id: String): List<PsiElement> {
-    val result = mutableListOf<PsiElement>()
-    val virtualFiles = FileTypeIndex.getFiles(TwineFileType, GlobalSearchScope.allScope(this))
-    for (virtualFile in virtualFiles) {
-        val twineFile = PsiManager.getInstance(this).findFile(virtualFile) as TwineFile?
-        if (twineFile != null) {
-            val properties = PsiTreeUtil.getChildrenOfType(twineFile, PsiElement::class.java)
-                ?.filter { it.elementType?.equals(TwineParserDefinition.Elements[TwineLexer.ID]) ?: false }
-            if (properties != null) {
-                for (property in properties) {
-                    if (id == property.text) {
-                        result.add(property)
-                    }
-                }
-            }
-        }
-    }
-    return result
+fun Project.findTwineIds(id: String): List<PsiElement> = findTwineIds().filter { id == it.text }
+
+fun Project.findTwineIds(): List<PsiElement> = findTwineElements().filter {
+    it.elementType
+        ?.equals(TwineParserDefinition.Elements[TwineLexer.ID])
+        ?: false
 }
+
+fun Project.findTwineElements(): List<PsiElement> =
+    FileTypeIndex.getFiles(TwineFileType, GlobalSearchScope.allScope(this))
+        .mapNotNull { PsiManager.getInstance(this).findFile(it) }
+        .map { it as TwineFile }
+        .flatMap { PsiTreeUtil.getChildrenOfType(it, PsiElement::class.java).asSequence() }
+        .toList()

@@ -25,7 +25,7 @@ class TwineLineMarkerProvider : RelatedItemLineMarkerProvider() {
             ?.let { androidStringResourceRegex.find(it.text) }
             ?.groupValues
             ?.get(1)
-            ?.let { element.project.findTwineLabels(it) }
+            ?.let { element.project.findTwineIds(it) }
             ?.takeIf { it.isNotEmpty() }
             ?.let {
                 val builder = NavigationGutterIconBuilder.create(Twine.ICON)
