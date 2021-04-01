@@ -18,8 +18,8 @@ import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
+import org.antlr.intellij.adaptor.lexer.RuleIElementType
 import org.antlr.intellij.adaptor.lexer.TokenIElementType
-
 
 class TwineParserDefinition : ParserDefinition {
 
@@ -33,11 +33,11 @@ class TwineParserDefinition : ParserDefinition {
         return TwineParserAdaptor(TwineLanguage, TwineParser(null))
     }
 
-    override fun getFileNodeType(): IFileElementType = Elements.file
+    override fun getFileNodeType(): IFileElementType = file
 
-    override fun getCommentTokens(): TokenSet = Elements.TokenSets.comment
+    override fun getCommentTokens(): TokenSet = TokenSets.comment
 
-    override fun getWhitespaceTokens(): TokenSet = Elements.TokenSets.ws
+    override fun getWhitespaceTokens(): TokenSet = TokenSets.ws
 
     override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
 
@@ -49,8 +49,10 @@ class TwineParserDefinition : ParserDefinition {
         return ParserDefinition.SpaceRequirements.MAY
     }
 
-    object Elements {
-        private val tokenIElementTypes: List<TokenIElementType>
+    companion object {
+
+        val tokens: List<TokenIElementType>
+        val rules: List<RuleIElementType>
 
         init {
             PSIElementTypeFactory.defineLanguageIElementTypes(
@@ -58,14 +60,11 @@ class TwineParserDefinition : ParserDefinition {
                 TwineParser.VOCABULARY.tokenNames,
                 TwineParser.ruleNames
             )
-            tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(TwineLanguage)
+            tokens = PSIElementTypeFactory.getTokenIElementTypes(TwineLanguage)
+            rules = PSIElementTypeFactory.getRuleIElementTypes(TwineLanguage)
         }
 
         val file: IFileElementType = IFileElementType(TwineLanguage)
-
-        operator fun get(id: Int): TokenIElementType {
-            return tokenIElementTypes[id]
-        }
 
         object TokenSets {
             val ws: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.WS)
