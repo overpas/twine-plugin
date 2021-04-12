@@ -12,8 +12,6 @@ import com.intellij.util.castSafelyTo
 
 class TwineLineMarkerProvider : RelatedItemLineMarkerProvider() {
 
-    private val androidStringResourceRegex = "R\\.string\\.(.+)".toRegex()
-
     override fun collectNavigationMarkers(
         element: PsiElement,
         result: MutableCollection<in RelatedItemLineMarkerInfo<*>?>
@@ -22,7 +20,7 @@ class TwineLineMarkerProvider : RelatedItemLineMarkerProvider() {
             ?.castSafelyTo<PsiIdentifier>()
             ?.takeIf { it.parent is PsiReferenceExpression }
             ?.parent
-            ?.let { androidStringResourceRegex.find(it.text) }
+            ?.let { Twine.ANDROID_STRING_RESOURCE_REGEX.find(it.text) }
             ?.groupValues
             ?.get(1)
             ?.let { element.project.findTwineIds(it) }

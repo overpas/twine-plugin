@@ -14,6 +14,7 @@ object DefaultPsiElementFactory : PsiElementFactory {
         rules[TwineParser.RULE_comment] -> TwineComment(node)
         rules[TwineParser.RULE_section] -> TwineSection(node)
         rules[TwineParser.RULE_section_title] -> TwineSectionTitle(node)
+        rules[TwineParser.RULE_identifier] -> TwineIdentifier(node)
         else -> TwinePsiElement(node)
     }
 }

@@ -24,6 +24,9 @@
         <externalAnnotator language="Twine" implementationClass="by.overpass.twap.lang.style.annotator.TwineAnnotator"/>
         <codeInsight.lineMarkerProvider language="JAVA"
                                         implementationClass="by.overpass.twap.lang.TwineLineMarkerProvider"/>
+        <lang.elementManipulator forClass="by.overpass.twap.lang.parsing.psi.TwineIdentifier"
+                                 implementationClass="by.overpass.twap.lang.parsing.psi.TwineIdentifierManipulator"/>
+        <psi.referenceContributor implementation="by.overpass.twap.lang.reference.TwineReferenceContributor"/>
     </extensions>
 
     <actions>

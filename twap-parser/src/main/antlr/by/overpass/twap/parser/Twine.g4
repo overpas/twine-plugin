@@ -16,7 +16,7 @@ section
 
 section_title
     :
-    '[[' ID ']]'
+    '[[' identifier ']]'
     ;
 
 label
@@ -26,7 +26,12 @@ label
 
 label_title
     :
-    '[' ID ']'
+    '[' identifier ']'
+    ;
+
+identifier
+    :
+    ID
     ;
 
 translation

@@ -16,7 +16,6 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
-import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
 import org.antlr.intellij.adaptor.lexer.RuleIElementType
 import org.antlr.intellij.adaptor.lexer.TokenIElementType
@@ -26,7 +25,7 @@ class TwineParserDefinition : ParserDefinition {
     private val psiElementFactory: PsiElementFactory = DefaultPsiElementFactory
 
     override fun createLexer(project: Project?): Lexer {
-        return ANTLRLexerAdaptor(TwineLanguage, TwineLexer(null))
+        return TwineLexerAdapter()
     }
 
     override fun createParser(project: Project?): PsiParser {
@@ -35,7 +34,7 @@ class TwineParserDefinition : ParserDefinition {
 
     override fun getFileNodeType(): IFileElementType = file
 
-    override fun getCommentTokens(): TokenSet = TokenSets.comment
+    override fun getCommentTokens(): TokenSet = TokenSet.EMPTY
 
     override fun getWhitespaceTokens(): TokenSet = TokenSets.ws
 
