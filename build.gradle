@@ -12,7 +12,7 @@ repositories {
 }
 
 ext {
-    junitVersion = "4.13"
+    junitVersion = "4.13.2"
     antlr4Version = "4.9.1"
     antlr4IntellijAdaptor = "0.1"
 }
