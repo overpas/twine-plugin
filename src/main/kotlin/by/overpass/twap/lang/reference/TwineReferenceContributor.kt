@@ -6,6 +6,9 @@ import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiReferenceContributor
 import com.intellij.psi.PsiReferenceRegistrar
 
+/**
+ * Registers references to twine labels
+ */
 class TwineReferenceContributor : PsiReferenceContributor() {
 
     override fun registerReferenceProviders(registrar: PsiReferenceRegistrar) {

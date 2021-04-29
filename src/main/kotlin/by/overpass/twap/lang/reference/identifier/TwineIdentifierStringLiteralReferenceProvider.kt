@@ -8,14 +8,16 @@ import com.intellij.psi.PsiReferenceProvider
 import com.intellij.util.ProcessingContext
 import com.intellij.util.castSafelyTo
 
-// TODO: This needs to be changed, we don't really need to reference twine elements in string literals,
-//  it's just an example
+/**
+ * TODO: This needs to be changed, we don't really need to reference twine elements in string literals
+ */
 class TwineIdentifierStringLiteralReferenceProvider : PsiReferenceProvider() {
 
     override fun getReferencesByElement(
         element: PsiElement,
         context: ProcessingContext
-    ): Array<PsiReference> = element.castSafelyTo<PsiLiteralExpression>()
+    ): Array<PsiReference> = element
+        .castSafelyTo<PsiLiteralExpression>()
         ?.value
         ?.takeIf { it is String }
         ?.let { it as String }

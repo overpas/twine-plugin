@@ -2,8 +2,15 @@ package by.overpass.twap.lang.reference.identifier
 
 import by.overpass.twap.lang.findTwineIds
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.*
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiElementResolveResult
+import com.intellij.psi.PsiPolyVariantReference
+import com.intellij.psi.PsiPolyVariantReferenceBase
+import com.intellij.psi.ResolveResult
 
+/**
+ * Reference to [by.overpass.twap.lang.parsing.psi.TwineIdentifier]
+ */
 class TwineIdentifierReference(
     element: PsiElement,
     textRange: TextRange
@@ -13,12 +20,11 @@ class TwineIdentifierReference(
         element.text.substring(textRange.startOffset, textRange.endOffset)
     }
 
-    override fun multiResolve(incompleteCode: Boolean): Array<ResolveResult> = myElement.project
+    override fun multiResolve(incompleteCode: Boolean): Array<ResolveResult> = myElement
+        .project
         .findTwineIds(id)
         .map { PsiElementResolveResult(it) }
         .toTypedArray()
 
-    override fun handleElementRename(newElementName: String): PsiElement {
-        return super.handleElementRename(newElementName)
-    }
+    override fun handleElementRename(newElementName: String): PsiElement = super.handleElementRename(newElementName)
 }

@@ -6,15 +6,11 @@ import javax.swing.Icon
 
 object TwineFileType : LanguageFileType(TwineLanguage) {
 
-    override fun getName(): String {
-        return "Twine"
-    }
+    override fun getName() = "Twine"
 
-    override fun getDescription(): String {
-        return "Twine file"
-    }
+    override fun getDescription() = "Twine file"
 
     override fun getDefaultExtension(): String = Twine.EXT
 
-    override fun getIcon(): Icon = Twine.ICON
+    override fun getIcon(): Icon = Twine.icon
 }

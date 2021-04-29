@@ -1,7 +1,6 @@
 package by.overpass.twap.lang.style.highlighter
 
 import by.overpass.twap.parser.TwineLexer
-import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.editor.colors.TextAttributesKey.EMPTY_ARRAY
@@ -10,23 +9,10 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.tree.IElementType
 import org.antlr.intellij.adaptor.lexer.TokenIElementType
 
-
+/**
+ * Twine syntax highlighter
+ */
 class TwineSyntaxHighlighter : SyntaxHighlighterBase() {
-
-    override fun getHighlightingLexer(): Lexer {
-        return TwineHighlighterLexerAdaptor(TwineLexer(null))
-    }
-
-    override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> =
-        if (tokenType !is TokenIElementType) {
-            EMPTY_ARRAY
-        } else when (tokenType.antlrTokenType) {
-            TwineLexer.ID -> TextAttributes.idKeys
-            TwineLexer.COMMENT -> TextAttributes.commentKeys
-            TwineLexer.TEXT -> TextAttributes.textKeys
-            TwineLexer.LOCALE -> TextAttributes.localeKeys
-            else -> EMPTY_ARRAY
-        }
 
     object TextAttributes {
 
@@ -51,4 +37,19 @@ class TwineSyntaxHighlighter : SyntaxHighlighterBase() {
         )
         val localeKeys = arrayOf(locale)
     }
+
+    override fun getHighlightingLexer() = TwineHighlighterLexerAdaptor(TwineLexer(null))
+
+    override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> =
+        if (tokenType !is TokenIElementType) {
+            EMPTY_ARRAY
+        } else {
+            when (tokenType.antlrTokenType) {
+                TwineLexer.ID -> TextAttributes.idKeys
+                TwineLexer.COMMENT -> TextAttributes.commentKeys
+                TwineLexer.TEXT -> TextAttributes.textKeys
+                TwineLexer.LOCALE -> TextAttributes.localeKeys
+                else -> EMPTY_ARRAY
+            }
+        }
 }

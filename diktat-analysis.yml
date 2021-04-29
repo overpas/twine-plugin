@@ -1,0 +1,8 @@
+- name: TOO_MANY_BLANK_LINES
+  enabled: false
+- name: WRONG_OVERLOADING_FUNCTION_ARGUMENTS
+  enabled: false
+- name: WRONG_INDENTATION
+  enabled: false
+- name: CUSTOM_GETTERS_SETTERS
+  enabled: false

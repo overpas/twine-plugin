@@ -11,13 +11,13 @@ class TwineCodeInsightTest : LightJavaCodeInsightFixtureTestCase() {
     fun testReferences() = with(myFixture) {
         configureByFiles("ReferencesTestData.java", "ReferencesTestData.twine")
         file.findElementAt(myFixture.caretOffset)!!
-            .parent
-            .run { references[0] }
-            .run { resolve() }
-            .let { it as TwineIdentifier }
-            .let {
-                assertEquals("label1", it.name)
-            }
+                .parent
+                .run { references[0] }
+                .run { resolve() }
+                .let { it as TwineIdentifier }
+                .let {
+                    assertEquals("label1", it.name)
+                }
     }
 
     fun testRename() = with(myFixture) {

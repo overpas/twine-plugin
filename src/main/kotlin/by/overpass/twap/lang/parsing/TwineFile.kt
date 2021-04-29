@@ -6,6 +6,9 @@ import com.intellij.extapi.psi.PsiFileBase
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.psi.FileViewProvider
 
+/**
+ * Twine file definition
+ */
 class TwineFile(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, TwineLanguage) {
 
     override fun getFileType(): FileType = TwineFileType
