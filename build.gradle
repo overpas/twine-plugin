@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.intellij' version '0.7.2'
     id 'org.jetbrains.kotlin.jvm' version '1.4.32'
     id 'jacoco'
+    id("org.cqfn.diktat.diktat-gradle-plugin") version "0.5.1"
 }
 
 group 'by.overpass'

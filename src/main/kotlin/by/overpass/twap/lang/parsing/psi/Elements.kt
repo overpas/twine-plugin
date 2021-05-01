@@ -1,3 +1,7 @@
+/**
+ * Twine psi elements
+ */
+
 package by.overpass.twap.lang.parsing.psi
 
 import by.overpass.twap.lang.TwineFileType
@@ -16,8 +20,14 @@ import com.intellij.psi.impl.source.resolve.reference.ReferenceProvidersRegistry
 import com.intellij.psi.util.PsiTreeUtil
 import org.antlr.intellij.adaptor.psi.ANTLRPsiNode
 
+/**
+ * Base twine psi element
+ */
 open class TwinePsiElement(node: ASTNode) : ANTLRPsiNode(node)
 
+/**
+ * Twine identifier psi element
+ */
 class TwineIdentifier(node: ASTNode) : TwinePsiElement(node), PsiNameIdentifierOwner {
 
     private val idNode: ASTNode?
@@ -49,12 +59,48 @@ class TwineIdentifier(node: ASTNode) : TwinePsiElement(node), PsiNameIdentifierO
     ).requireNoNulls()
 }
 
+/**
+ * Twine label psi element
+ */
 class TwineLabel(node: ASTNode) : TwinePsiElement(node)
 
+/**
+ * Twine label title psi element
+ */
+class TwineLabelTitle(node: ASTNode) : TwinePsiElement(node)
+
+/**
+ * Twine translation psi element
+ */
+class TwineTranslation(node: ASTNode) : TwinePsiElement(node)
+
+/**
+ * Twine comment psi element
+ */
+class TwineComment(node: ASTNode) : TwinePsiElement(node)
+
+/**
+ * Twine section psi element
+ */
+class TwineSection(node: ASTNode) : TwinePsiElement(node)
+
+/**
+ * Twine section title psi element
+ */
+class TwineSectionTitle(node: ASTNode) : TwinePsiElement(node)
+
+/**
+ * @param id
+ * @return [TwineIdentifier] from dummy file with [id]
+ */
 fun Project.createTwineIdentifier(id: String): TwineIdentifier = createDummyTwineFileWithId(id)
     .let { PsiTreeUtil.findChildrenOfType(it, TwineIdentifier::class.java) }
     .last()
 
+/**
+ * @param id
+ * @return dummy [TwineFile] containing a label with [id]
+ */
 fun Project.createDummyTwineFileWithId(id: String): TwineFile = createTwineFile(
     "dummy",
     """
@@ -64,16 +110,11 @@ fun Project.createDummyTwineFileWithId(id: String): TwineFile = createTwineFile(
     """.trimIndent()
 )
 
+/**
+ * @param fileName
+ * @param text
+ * @return [TwineFile] with [fileName] and [text] as content
+ */
 fun Project.createTwineFile(fileName: String, text: String): TwineFile = PsiFileFactory.getInstance(this)
     .createFileFromText("$fileName.twine", TwineFileType, text)
     .let { it as TwineFile }
-
-class TwineLabelTitle(node: ASTNode) : TwinePsiElement(node)
-
-class TwineTranslation(node: ASTNode) : TwinePsiElement(node)
-
-class TwineComment(node: ASTNode) : TwinePsiElement(node)
-
-class TwineSection(node: ASTNode) : TwinePsiElement(node)
-
-class TwineSectionTitle(node: ASTNode) : TwinePsiElement(node)

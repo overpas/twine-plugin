@@ -5,6 +5,9 @@ import by.overpass.twap.parser.TwineParser
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 
+/**
+ * Default twine implementation of [PsiElementFactory]
+ */
 object DefaultPsiElementFactory : PsiElementFactory {
 
     override fun createElement(node: ASTNode): PsiElement = when (node.elementType) {

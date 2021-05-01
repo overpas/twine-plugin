@@ -20,17 +20,17 @@ import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
 import org.antlr.intellij.adaptor.lexer.RuleIElementType
 import org.antlr.intellij.adaptor.lexer.TokenIElementType
 
+/**
+ * Base for twine parsing
+ */
+@Suppress("INLINE_CLASS_CAN_BE_USED")
 class TwineParserDefinition : ParserDefinition {
 
     private val psiElementFactory: PsiElementFactory = DefaultPsiElementFactory
 
-    override fun createLexer(project: Project?): Lexer {
-        return TwineLexerAdapter()
-    }
+    override fun createLexer(project: Project?): Lexer = TwineLexerAdapter()
 
-    override fun createParser(project: Project?): PsiParser {
-        return TwineParserAdaptor(TwineLanguage, TwineParser(null))
-    }
+    override fun createParser(project: Project?): PsiParser = TwineParserAdaptor(TwineLanguage, TwineParser(null))
 
     override fun getFileNodeType(): IFileElementType = file
 
@@ -44,14 +44,15 @@ class TwineParserDefinition : ParserDefinition {
 
     override fun createFile(viewProvider: FileViewProvider): PsiFile = TwineFile(viewProvider)
 
-    override fun spaceExistenceTypeBetweenTokens(left: ASTNode?, right: ASTNode?): ParserDefinition.SpaceRequirements {
-        return ParserDefinition.SpaceRequirements.MAY
-    }
+    override fun spaceExistenceTypeBetweenTokens(left: ASTNode?, right: ASTNode?): ParserDefinition.SpaceRequirements =
+        ParserDefinition.SpaceRequirements.MAY
 
+    @Suppress("MULTIPLE_INIT_BLOCKS", "WRONG_ORDER_IN_CLASS_LIKE_STRUCTURES")
     companion object {
 
         val tokens: List<TokenIElementType>
         val rules: List<RuleIElementType>
+        val file: IFileElementType
 
         init {
             PSIElementTypeFactory.defineLanguageIElementTypes(
@@ -61,9 +62,8 @@ class TwineParserDefinition : ParserDefinition {
             )
             tokens = PSIElementTypeFactory.getTokenIElementTypes(TwineLanguage)
             rules = PSIElementTypeFactory.getRuleIElementTypes(TwineLanguage)
+            file = IFileElementType(TwineLanguage)
         }
-
-        val file: IFileElementType = IFileElementType(TwineLanguage)
 
         object TokenSets {
             val ws: TokenSet = PSIElementTypeFactory.createTokenSet(TwineLanguage, TwineLexer.WS)

@@ -8,6 +8,9 @@ import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
 import javax.swing.Icon
 
+/**
+ * Defines twine file color scheme editing in IDE settings
+ */
 class TwineColorSettingsPage : ColorSettingsPage {
 
     override fun getAttributeDescriptors(): Array<AttributesDescriptor> = descriptors
@@ -16,7 +19,7 @@ class TwineColorSettingsPage : ColorSettingsPage {
 
     override fun getDisplayName(): String = "Twine"
 
-    override fun getIcon(): Icon = Twine.ICON
+    override fun getIcon(): Icon = Twine.icon
 
     override fun getHighlighter(): SyntaxHighlighter = TwineSyntaxHighlighter()
 
