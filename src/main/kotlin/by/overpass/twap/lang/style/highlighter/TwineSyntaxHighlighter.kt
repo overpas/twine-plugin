@@ -14,6 +14,9 @@ import org.antlr.intellij.adaptor.lexer.TokenIElementType
  */
 class TwineSyntaxHighlighter : SyntaxHighlighterBase() {
 
+    /**
+     * [TextAttributesKey]s corresponding to twine lexer tokens
+     */
     object TextAttributes {
 
         val id: TextAttributesKey = createTextAttributesKey(

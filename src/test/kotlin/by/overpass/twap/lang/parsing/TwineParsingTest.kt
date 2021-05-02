@@ -3,6 +3,9 @@ package by.overpass.twap.lang.parsing
 import by.overpass.twap.Twine
 import com.intellij.testFramework.ParsingTestCase
 
+/**
+ * TwineParsingTest
+ */
 class TwineParsingTest : ParsingTestCase(
     "",
     Twine.EXT,
