@@ -4,6 +4,9 @@ import by.overpass.twap.lang.parsing.psi.TwineIdentifier
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase
 import org.junit.Test
 
+/**
+ * TwineCodeInsightTest
+ */
 class TwineCodeInsightTest : LightJavaCodeInsightFixtureTestCase() {
 
     override fun getTestDataPath(): String = "src/test/testData"

@@ -3,6 +3,9 @@ package by.overpass.twap.parser
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
+/**
+ * VocabularyKtTest
+ */
 class VocabularyKtTest {
 
     @Test
