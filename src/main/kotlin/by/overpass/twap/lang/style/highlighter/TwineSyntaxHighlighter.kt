@@ -14,21 +14,6 @@ import org.antlr.intellij.adaptor.lexer.TokenIElementType
  */
 class TwineSyntaxHighlighter : SyntaxHighlighterBase() {
 
-    override fun getHighlightingLexer() = TwineHighlighterLexerAdaptor(TwineLexer(null))
-
-    override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> =
-        if (tokenType !is TokenIElementType) {
-            EMPTY_ARRAY
-        } else {
-            when (tokenType.antlrTokenType) {
-                TwineLexer.ID -> TextAttributes.idKeys
-                TwineLexer.COMMENT -> TextAttributes.commentKeys
-                TwineLexer.TEXT -> TextAttributes.textKeys
-                TwineLexer.LOCALE -> TextAttributes.localeKeys
-                else -> EMPTY_ARRAY
-            }
-        }
-
     /**
      * [TextAttributesKey]s corresponding to twine lexer tokens
      */
@@ -55,4 +40,19 @@ class TwineSyntaxHighlighter : SyntaxHighlighterBase() {
         )
         val localeKeys = arrayOf(locale)
     }
+
+    override fun getHighlightingLexer() = TwineHighlighterLexerAdaptor(TwineLexer(null))
+
+    override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> =
+        if (tokenType !is TokenIElementType) {
+            EMPTY_ARRAY
+        } else {
+            when (tokenType.antlrTokenType) {
+                TwineLexer.ID -> TextAttributes.idKeys
+                TwineLexer.COMMENT -> TextAttributes.commentKeys
+                TwineLexer.TEXT -> TextAttributes.textKeys
+                TwineLexer.LOCALE -> TextAttributes.localeKeys
+                else -> EMPTY_ARRAY
+            }
+        }
 }
