@@ -13,7 +13,6 @@ import org.antlr.intellij.adaptor.lexer.TokenIElementType
  * Twine syntax highlighter
  */
 class TwineSyntaxHighlighter : SyntaxHighlighterBase() {
-
     /**
      * [TextAttributesKey]s corresponding to twine lexer tokens
      */

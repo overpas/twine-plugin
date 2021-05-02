@@ -55,7 +55,7 @@ class TwineIdentifier(node: ASTNode) : TwinePsiElement(node), PsiNameIdentifierO
 
     override fun getReferences(): Array<PsiReference> {
         val fromProviders = ReferenceProvidersRegistry.getReferencesFromProviders(this)
-        val array = arrayOfNulls<PsiReference>(fromProviders.size + 1)
+        val array: Array<PsiReference?> = arrayOfNulls(fromProviders.size + 1)
         System.arraycopy(fromProviders, 0, array, 1, fromProviders.size)
         array[0] = reference
         return array.requireNoNulls()
