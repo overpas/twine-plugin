@@ -11,6 +11,9 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
 }
 
 ext {
@@ -53,7 +56,7 @@ test {
 }
 
 jacoco {
-    toolVersion = "0.8.6"
+    toolVersion = "0.8.7-SNAPSHOT"
 }
 
 jacocoTestReport {
