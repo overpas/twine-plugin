@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.intellij' version '0.7.2'
     id 'org.jetbrains.kotlin.jvm' version '1.5.0'
     id 'jacoco'
-    id("org.cqfn.diktat.diktat-gradle-plugin") version "0.5.2"
+    id("org.cqfn.diktat.diktat-gradle-plugin") version "0.5.3"
 }
 
 group 'by.overpass'
@@ -56,7 +56,7 @@ test {
 }
 
 jacoco {
-    toolVersion = "0.8.7-SNAPSHOT"
+    toolVersion = "0.8.7"
 }
 
 jacocoTestReport {
