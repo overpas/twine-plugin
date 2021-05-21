@@ -23,13 +23,8 @@ ext {
 }
 
 compileJava {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-    kotlinOptions.useIR = true
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {
@@ -41,8 +36,8 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2020.3.3'
-    plugins = ['com.intellij.java']
+    version '201.8743.12'
+    plugins = ['com.intellij.java', 'android']
 }
 
 patchPluginXml {
