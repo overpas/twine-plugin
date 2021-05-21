@@ -11,7 +11,7 @@
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
-
+    <depends>org.jetbrains.android</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Twine" implementationClass="by.overpass.twap.lang.TwineFileType"
