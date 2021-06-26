@@ -4,6 +4,9 @@ import com.intellij.psi.PsiElement
 import com.intellij.refactoring.listeners.RefactoringElementListener
 import com.intellij.refactoring.listeners.RefactoringElementListenerProvider
 
+/**
+ * Listens to refactoring events in the project
+ */
 class TwineRefactoringElementListenerProvider : RefactoringElementListenerProvider {
 
     override fun getListener(element: PsiElement): RefactoringElementListener {
@@ -13,7 +16,7 @@ class TwineRefactoringElementListenerProvider : RefactoringElementListenerProvid
             }
 
             override fun elementRenamed(newElement: PsiElement) {
-                // TODO: Maybe perform gradle sync after an xml element renamed
+                // do nothing for now
             }
         }
     }
