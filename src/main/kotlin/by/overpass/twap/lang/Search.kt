@@ -35,3 +35,18 @@ fun Project.findTwineElements(): List<PsiElement> =
             acc += PsiTreeUtil.collectElements(twineFile) { true }
             acc
         }
+
+/**
+ * @return Java files in [Project]
+ */
+fun Project.findJavaFiles(): List<PsiFile> = findFiles(JavaFileType.INSTANCE)
+
+/**
+ * @return files with [fileType] in [Project] withing [scope]
+ */
+fun Project.findFiles(
+    fileType: FileType,
+    scope: GlobalSearchScope = ProjectScope.getProjectScope(this)
+): List<PsiFile> =
+    FileTypeIndex.getFiles(fileType, scope)
+        .mapNotNull { PsiManager.getInstance(this).findFile(it) }

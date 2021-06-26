@@ -25,5 +25,31 @@ class TwineIdentifierReference(
         .map { PsiElementResolveResult(it) }
         .toTypedArray()
 
-    override fun handleElementRename(newElementName: String): PsiElement = super.handleElementRename(newElementName)
+    override fun handleElementRename(newElementName: String): PsiElement {
+        val project = myElement.project
+        val dumbService = DumbService.getInstance(project)
+
+        project.findFiles(XmlFileType.INSTANCE)
+            .flatMap { file -> PsiTreeUtil.findChildrenOfType(file, XmlAttributeValue::class.java) }
+            .filter { it.value == id }
+            .map { createRenameProcessor(it, newElementName) }
+            .forEach {
+                dumbService.smartInvokeLater { it.run() }
+                // TODO: Gradle sync after that
+            }
+
+        return super.handleElementRename(newElementName)
+    }
+
+    private fun createRenameProcessor(myPsiElement: PsiElement, newName: String): RenameProcessor {
+        val project = myElement.project
+        return RenameProcessor(
+            project,
+            myPsiElement,
+            newName,
+            GlobalSearchScope.projectScope(project),
+            false,
+            false
+        )
+    }
 }
