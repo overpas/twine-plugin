@@ -24,9 +24,10 @@ class TwineCodeInsightTest : LightJavaCodeInsightFixtureTestCase() {
     }
 
     fun testRename() = with(myFixture) {
-        configureByFiles("RenameTestData.java", "RenameTestData.twine")
+        configureByFiles("RenameTestData.java", "RenameTestData.twine", "before_rename_strings.xml")
         renameElementAtCaret("label2")
         checkResultByFile("RenameTestData.twine", "RenameTestDataAfter.twine", false)
+        checkResultByFile("before_rename_strings.xml", "after_rename_strings.xml", false)
     }
 
     @Test
