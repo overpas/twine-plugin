@@ -9,15 +9,13 @@ import com.intellij.refactoring.listeners.RefactoringElementListenerProvider
  */
 class TwineRefactoringElementListenerProvider : RefactoringElementListenerProvider {
 
-    override fun getListener(element: PsiElement): RefactoringElementListener {
-        return object : RefactoringElementListener {
-            override fun elementMoved(newElement: PsiElement) {
-                // do nothing
-            }
+    override fun getListener(element: PsiElement): RefactoringElementListener = object : RefactoringElementListener {
+        override fun elementMoved(newElement: PsiElement) {
+            // do nothing
+        }
 
-            override fun elementRenamed(newElement: PsiElement) {
-                // do nothing for now
-            }
+        override fun elementRenamed(newElement: PsiElement) {
+            // do nothing for now
         }
     }
 }

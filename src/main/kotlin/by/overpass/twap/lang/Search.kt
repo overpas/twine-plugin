@@ -17,7 +17,7 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.ProjectScope
 import com.intellij.psi.util.PsiTreeUtil
 
-val Project.allScope: GlobalSearchScope
+val Project.globalAllScope: GlobalSearchScope
     get() = GlobalSearchScope.allScope(this)
 
 val Project.projectScope: GlobalSearchScope
@@ -37,7 +37,7 @@ fun Project.findTwineIds(): List<TwineIdentifier> = findTwineElements().filterIs
 /**
  * @return all twine psi elements in [Project]
  */
-fun Project.findTwineElements(): List<PsiElement> = findFiles(TwineFileType, allScope)
+fun Project.findTwineElements(): List<PsiElement> = findFiles(TwineFileType, globalAllScope)
     .map { it as TwineFile }
     .fold(mutableListOf()) { acc, twineFile ->
         acc += PsiTreeUtil.collectElements(twineFile) { true }
@@ -50,6 +50,8 @@ fun Project.findTwineElements(): List<PsiElement> = findFiles(TwineFileType, all
 fun Project.findJavaFiles(): List<PsiFile> = findFiles(JavaFileType.INSTANCE)
 
 /**
+ * @param fileType the type of file
+ * @param scope [GlobalSearchScope] where files should be searched
  * @return files with [fileType] in [Project] withing [scope]
  */
 fun Project.findFiles(
