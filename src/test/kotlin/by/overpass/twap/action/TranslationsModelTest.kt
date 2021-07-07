@@ -4,8 +4,13 @@ import by.overpass.twap.action.translations.TranslationsModel
 import org.junit.Test
 import kotlin.test.assertEquals
 
+/**
+ * [TranslationsModel] test
+ */
 class TranslationsModelTest {
-
+    /**
+     * Assert translations updated
+     */
     @Test
     fun `assert translations updated`() {
         val map: MutableMap<String, String> = mutableMapOf(
