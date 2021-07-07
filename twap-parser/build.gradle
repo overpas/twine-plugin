@@ -19,7 +19,7 @@ compileJava {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     antlr "org.antlr:antlr4:$antlr4Version"
-    compile "org.antlr:antlr4-runtime:$antlr4Version"
+    implementation "org.antlr:antlr4-runtime:$antlr4Version"
     testImplementation "junit:junit:$junitVersion"
 }
 

@@ -28,6 +28,6 @@ class EditTranslationsActionTest : LightJavaCodeInsightFixtureTestCase() {
         configureByFiles("EditTranslationsTestData.java", "EditTranslationsTestData.twine")
         val availableIntentionActions = getAvailableIntentions("EditTranslationsTestData.java")
         availableIntentionActions[0].invoke(project, editor, file)
-        checkResultByFile("EditTranslationsTestData.twine", "EditTranslationsTestDataAfter.twine", false)
+        checkResultByFile("EditTranslationsTestData.twine", "AfterEditTranslationsTestData.twine", false)
     }
 }

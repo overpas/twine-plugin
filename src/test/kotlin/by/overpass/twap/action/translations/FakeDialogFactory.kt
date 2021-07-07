@@ -29,6 +29,6 @@ class FakeDialogFactory : DialogFactory {
             return true
         }
 
-        override fun isModal(): Boolean = false
+        override fun isModal(): Boolean = true
     }
 }
