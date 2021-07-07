@@ -1,5 +1,10 @@
+/**
+ * Reference to TwineIdentifier
+ */
+
 package by.overpass.twap.lang.reference.identifier
 
+import by.overpass.twap.ServiceLocator
 import by.overpass.twap.lang.findFiles
 import by.overpass.twap.lang.findTwineIds
 import com.intellij.ide.highlighter.XmlFileType
@@ -12,13 +17,15 @@ import com.intellij.psi.ResolveResult
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.xml.XmlAttributeValue
 
+private typealias RenameProcessorFactory = StringResourceRenameProcessorFactory
+
 /**
  * Reference to [by.overpass.twap.lang.parsing.psi.TwineIdentifier] implementation
  */
 class TwineIdentifierReference(
     element: PsiElement,
     textRange: TextRange,
-    private val renameProcessorFactory: RenameProcessorFactory = RenameProcessorFactory()
+    private val renameProcessorFactory: RenameProcessorFactory = ServiceLocator.stringResourceRenameProcessorFactory
 ) : PsiPolyVariantReferenceBase<PsiElement>(element, textRange), PsiPolyVariantReference {
 
     private val id: String by lazy(LazyThreadSafetyMode.NONE) {
