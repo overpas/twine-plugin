@@ -3,7 +3,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 plugins {
     id 'java'
     id 'org.jetbrains.intellij' version '0.7.2'
-    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.20'
     id 'jacoco'
     id("org.cqfn.diktat.diktat-gradle-plugin") version "0.6.2"
 }
@@ -44,10 +44,10 @@ intellij {
 
 runIde {
 
-//    if (Os.isFamily(Os.FAMILY_MAC)) {
+    if (Os.isFamily(Os.FAMILY_MAC)) {
 //        // to run with the real Android Studio
 //        ideDirectory = '/Applications/Android Studio.app/Contents'
-//    }
+    }
 }
 
 patchPluginXml {

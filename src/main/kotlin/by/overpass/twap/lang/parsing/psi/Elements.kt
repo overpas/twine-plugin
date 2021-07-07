@@ -139,22 +139,6 @@ class TwineSection(node: ASTNode) : TwinePsiElement(node)
 class TwineSectionTitle(node: ASTNode) : TwinePsiElement(node)
 
 /**
- * @param label the new label
- * @param translations the new translations (locale to text map)
- * @return string content for a dummy twine file
- */
-fun createDummyTwineFileContent(label: String, translations: Map<String, String>): String =
-    """
-    [[dummy_section]]
-        [$label]
-${
-        translations.map { (locale, translation) -> "            $locale = $translation\n" }
-            .toList()
-            .fold("") { acc, translation -> "$acc$translation" }
-    }
-    """.trimIndent()
-
-/**
  * @param id
  * @return dummy [TwineFile] containing a label with [id]
  */
@@ -196,3 +180,19 @@ fun Project.createTwineIdentifier(id: String): TwineIdentifier = createDummyTwin
 fun Project.createTwineFile(fileName: String, text: String): TwineFile = PsiFileFactory.getInstance(this)
     .createFileFromText("$fileName.twine", TwineFileType, text)
     .let { it as TwineFile }
+
+/**
+ * @param label the new label
+ * @param translations the new translations (locale to text map)
+ * @return string content for a dummy twine file
+ */
+fun createDummyTwineFileContent(label: String, translations: Map<String, String>): String =
+    """
+    [[dummy_section]]
+        [$label]
+${
+        translations.map { (locale, translation) -> "            $locale = $translation\n" }
+            .toList()
+            .fold("") { acc, translation -> "$acc$translation" }
+    }
+    """.trimIndent()
