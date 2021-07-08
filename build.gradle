@@ -53,8 +53,7 @@ runIde {
 
 patchPluginXml {
     changeNotes """
-      Initial implementation<br>
-      <em>most HTML tags may be used</em>"""
+      Initial implementation"""
 }
 
 test {

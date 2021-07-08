@@ -19,12 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Crear gradle caches
+        run: rm -rf home/runner/.gradle/caches
       - uses: actions/checkout@v2
       - name: Build
         run: ./gradlew assemble
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Crear gradle caches
+        run: rm -rf home/runner/.gradle/caches
       - uses: actions/checkout@v2
       - name: Test
         run: ./gradlew jacocoTestReport
