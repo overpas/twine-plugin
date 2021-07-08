@@ -1,12 +1,10 @@
 package by.overpass.twap.action.translations
 
 import by.overpass.twap.ServiceLocator
-import by.overpass.twap.action.DialogFactory
 import by.overpass.twap.action.PsiElementFinderIntentionAction
 import by.overpass.twap.lang.findTwineIds
 import by.overpass.twap.lang.parsing.psi.TwineIdentifier
 import by.overpass.twap.lang.parsing.psi.TwineLabel
-import by.overpass.twap.service.GradleSyncService
 import com.intellij.codeInsight.intention.HighPriorityAction
 import com.intellij.openapi.command.WriteCommandAction.runWriteCommandAction
 import com.intellij.openapi.editor.Editor
@@ -20,10 +18,7 @@ import com.intellij.util.castSafelyTo
 /**
  * Action that enables translation editing
  */
-class EditTranslationsAction(
-    private val gradleSyncService: GradleSyncService = ServiceLocator.gradleSyncService,
-    private val dialogFactory: DialogFactory = ServiceLocator.dialogFactory
-) : PsiElementFinderIntentionAction(), HighPriorityAction {
+class EditTranslationsAction : PsiElementFinderIntentionAction(), HighPriorityAction {
 
     override fun getText(): String = NAME
 
@@ -52,7 +47,7 @@ class EditTranslationsAction(
                     twineLabel.translations.forEach { translation ->
                         translationsModel.setTranslation(translation.localeValue, translation.textValue)
                     }
-                    val dialog = dialogFactory.createEditTranslationsDialog(
+                    val dialog = ServiceLocator.dialogFactory.createEditTranslationsDialog(
                         project,
                         twineLabel,
                         translationsModel,
@@ -63,7 +58,7 @@ class EditTranslationsAction(
                     }
                     runWriteCommandAction(project) {
                         twineLabel.updateTranslations(translationsModel.data)
-                        gradleSyncService.syncProject(project)
+                        ServiceLocator.gradleSyncService.syncProject(project)
                     }
                 }
         }

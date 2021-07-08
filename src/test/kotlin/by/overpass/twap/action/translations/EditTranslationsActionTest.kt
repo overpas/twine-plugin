@@ -14,8 +14,8 @@ class EditTranslationsActionTest : LightJavaCodeInsightFixtureTestCase() {
      * Assert [EditTranslationsAction] is available
      */
     fun testEditTranslationsIntentionActionIsAvailable() = with(myFixture) {
-        configureByFiles("EditTranslationsTestData.java", "EditTranslationsTestData.twine")
-        val availableIntentionActions = getAvailableIntentions("EditTranslationsTestData.java")
+        configureByFiles("$EDIT_TRANSLATIONS_TEST_DATA.java", "$EDIT_TRANSLATIONS_TEST_DATA.twine")
+        val availableIntentionActions = getAvailableIntentions("$EDIT_TRANSLATIONS_TEST_DATA.java")
         assertEquals(EditTranslationsAction.NAME, availableIntentionActions[0].familyName)
     }
 
@@ -25,9 +25,13 @@ class EditTranslationsActionTest : LightJavaCodeInsightFixtureTestCase() {
     fun testTranslationsEdited() = with(myFixture) {
         ServiceLocator.dialogFactoryField = FakeDialogFactory()
         ServiceLocator.gradleSyncServiceField = FakeGradleSyncService()
-        configureByFiles("EditTranslationsTestData.java", "EditTranslationsTestData.twine")
-        val availableIntentionActions = getAvailableIntentions("EditTranslationsTestData.java")
+        configureByFiles("$EDIT_TRANSLATIONS_TEST_DATA.java", "$EDIT_TRANSLATIONS_TEST_DATA.twine")
+        val availableIntentionActions = getAvailableIntentions("$EDIT_TRANSLATIONS_TEST_DATA.java")
         availableIntentionActions[0].invoke(project, editor, file)
-        checkResultByFile("EditTranslationsTestData.twine", "AfterEditTranslationsTestData.twine", false)
+        checkResultByFile("$EDIT_TRANSLATIONS_TEST_DATA.twine", "After$EDIT_TRANSLATIONS_TEST_DATA.twine", false)
+    }
+
+    companion object {
+        private const val EDIT_TRANSLATIONS_TEST_DATA = "EditTranslationsTestData"
     }
 }
