@@ -8,7 +8,7 @@ import javax.swing.JComponent
 import javax.swing.JPanel
 
 /**
- * Fake implementation if [DialogFactory] to be used in [by.overpass.twap.lang.TwineCodeInsightTest]
+ * Fake implementation if [DialogFactory] to be used in [EditTranslationsActionTest]
  */
 class FakeDialogFactory : DialogFactory {
 
