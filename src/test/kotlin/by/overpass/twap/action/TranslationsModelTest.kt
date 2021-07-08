@@ -1,8 +1,8 @@
 package by.overpass.twap.action
 
 import by.overpass.twap.action.translations.TranslationsModel
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import kotlin.test.assertEquals
 
 /**
  * [TranslationsModel] test
