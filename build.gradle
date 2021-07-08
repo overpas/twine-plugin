@@ -3,7 +3,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 plugins {
     id 'java'
     id 'org.jetbrains.intellij' version '0.7.2'
-    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.20'
     id 'jacoco'
     id("org.cqfn.diktat.diktat-gradle-plugin") version "0.6.2"
 }
@@ -32,7 +32,6 @@ compileJava {
 dependencies {
     implementation project(":twap-parser")
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    implementation "org.jetbrains.kotlin:kotlin-reflect"
     implementation "org.antlr:antlr4-intellij-adaptor:$antlr4IntellijAdaptor"
     testImplementation "junit:junit:$junitVersion"
 }
