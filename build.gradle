@@ -32,6 +32,7 @@ compileJava {
 dependencies {
     implementation project(":twap-parser")
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
     implementation "org.antlr:antlr4-intellij-adaptor:$antlr4IntellijAdaptor"
     testImplementation "junit:junit:$junitVersion"
 }
