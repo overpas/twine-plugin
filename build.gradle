@@ -38,7 +38,7 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '201.8743.12'
+    version '202.7660.26'
     plugins = ['com.intellij.java', 'android']
 }
 
