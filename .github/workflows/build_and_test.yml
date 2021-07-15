@@ -27,6 +27,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Test
-        run: ./gradlew jacocoTestReport
+        run: ./gradlew jacocoTestReport --stacktrace
       - name: Submit report
         run: bash <(curl -s https://codecov.io/bash)
