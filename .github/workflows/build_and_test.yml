@@ -15,13 +15,15 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
+  build_and_test:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Build
+      - name: Assemble
         run: ./gradlew assemble
+      - name: Java version
+        run: java -version
       - name: Test
         run: ./gradlew jacocoTestReport
       - name: Submit report
