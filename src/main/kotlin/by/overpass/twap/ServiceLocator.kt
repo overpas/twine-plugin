@@ -1,8 +1,6 @@
 package by.overpass.twap
 
 import by.overpass.twap.action.DialogFactory
-import by.overpass.twap.lang.parsing.psi.DefaultPsiElementFactory
-import by.overpass.twap.lang.parsing.psi.PsiElementFactory
 import by.overpass.twap.lang.reference.identifier.StringResourceRenameProcessorFactory
 import by.overpass.twap.service.GradleSyncService
 
@@ -17,13 +15,6 @@ object ServiceLocator {
      * Provide an instance of [GradleSyncService]
      */
     val gradleSyncService: GradleSyncService get() = gradleSyncServiceField!!
-
-    private var psiElementFactoryField: PsiElementFactory? = DefaultPsiElementFactory
-
-    /**
-     * Provide an instance of [PsiElementFactory]
-     */
-    val psiElementFactory: PsiElementFactory get() = psiElementFactoryField!!
 
     private var stringResourceRenameProcessorFactoryField: StringResourceRenameProcessorFactory? =
         StringResourceRenameProcessorFactory()
