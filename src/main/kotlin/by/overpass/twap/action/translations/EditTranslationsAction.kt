@@ -5,6 +5,7 @@ import by.overpass.twap.action.PsiElementFinderIntentionAction
 import by.overpass.twap.lang.findTwineIds
 import by.overpass.twap.lang.parsing.psi.TwineIdentifier
 import by.overpass.twap.lang.parsing.psi.TwineLabel
+import by.overpass.twap.lang.reference.identifier.underscoreReplacement
 import com.intellij.codeInsight.intention.HighPriorityAction
 import com.intellij.openapi.command.WriteCommandAction.runWriteCommandAction
 import com.intellij.openapi.editor.Editor
@@ -79,7 +80,9 @@ class EditTranslationsAction : PsiElementFinderIntentionAction(), HighPriorityAc
         getPsiReferenceExpression(editor, file)
             ?.lastChild
             ?.castSafelyTo<PsiIdentifier>()
-            ?.let { project.findTwineIds(it.text) }
+            ?.text
+            ?.run(underscoreReplacement)
+            ?.let { project.findTwineIds(it) }
             ?.firstOrNull()
 
     companion object {
