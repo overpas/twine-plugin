@@ -38,22 +38,21 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '201.8743.12'
+    version '202.7660.26'
     plugins = ['com.intellij.java', 'android']
 }
 
 runIde {
 
     if (Os.isFamily(Os.FAMILY_MAC)) {
-        // to run with the real Android Studio
-        ideDirectory = '/Applications/Android Studio.app/Contents'
+//        // to run with the real Android Studio
+//        ideDirectory = '/Applications/Android Studio.app/Contents'
     }
 }
 
 patchPluginXml {
     changeNotes """
-      Initial implementation<br>
-      <em>most HTML tags may be used</em>"""
+      Initial implementation"""
 }
 
 test {

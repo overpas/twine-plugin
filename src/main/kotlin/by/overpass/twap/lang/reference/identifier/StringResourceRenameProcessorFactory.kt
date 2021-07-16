@@ -12,7 +12,7 @@ import com.intellij.refactoring.rename.RenameProcessor
 /**
  * Creates a [RenameProcessor]
  */
-interface RenameProcessorFactory {
+interface StringResourceRenameProcessorFactory {
     /**
      * Create a [RenameProcessor] to process of settings the name of [myPsiElement] to [newName]
      *
@@ -29,15 +29,15 @@ interface RenameProcessorFactory {
 
     companion object {
         /**
-         * Default implementation of [RenameProcessorFactory]
+         * Default implementation of [StringResourceRenameProcessorFactory]
          *
-         * @return an instance of [RenameProcessorFactory]
+         * @return an instance of [StringResourceRenameProcessorFactory]
          */
-        operator fun invoke(): RenameProcessorFactory = DefaultRenameProcessorFactory
+        operator fun invoke(): StringResourceRenameProcessorFactory = DefaultStringResourceRenameProcessorFactory
     }
 }
 
-private object DefaultRenameProcessorFactory : RenameProcessorFactory {
+private object DefaultStringResourceRenameProcessorFactory : StringResourceRenameProcessorFactory {
 
     override fun create(
         project: Project,

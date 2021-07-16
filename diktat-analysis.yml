@@ -6,3 +6,5 @@
   enabled: false
 - name: CUSTOM_GETTERS_SETTERS
   enabled: false
+- name: CLASS_SHOULD_NOT_BE_ABSTRACT
+  enabled: false
