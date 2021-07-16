@@ -26,7 +26,7 @@ import org.antlr.intellij.adaptor.lexer.TokenIElementType
 @Suppress("INLINE_CLASS_CAN_BE_USED")
 class TwineParserDefinition : ParserDefinition {
 
-    private val psiElementFactory: PsiElementFactory = ServiceLocator.psiElementFactory
+    private val psiElementFactory: PsiElementFactory by lazy { ServiceLocator.psiElementFactory }
 
     override fun createLexer(project: Project?): Lexer = TwineLexerAdapter()
 
