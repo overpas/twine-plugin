@@ -14,8 +14,15 @@ import org.junit.runners.Parameterized
 @RunWith(Parameterized::class)
 class TwineSyntaxHighlighterTest(
     private val expectedKeys: Array<TextAttributesKey>,
-    private val iElementType: IElementType,
+    private val elementType: IElementType,
 ) {
+
+    private val twineSyntaxHighlighter = TwineSyntaxHighlighter()
+
+    @Test
+    fun `token highlight correct`() {
+        assertArrayEquals(expectedKeys, twineSyntaxHighlighter.getTokenHighlights(elementType))
+    }
 
     companion object {
 
@@ -29,12 +36,5 @@ class TwineSyntaxHighlighterTest(
             arrayOf(EMPTY_ARRAY, tokens[TwineLexer.T__2]),
             arrayOf(EMPTY_ARRAY, tokens[TwineParser.RULE_label]),
         )
-    }
-
-    private val twineSyntaxHighlighter = TwineSyntaxHighlighter()
-
-    @Test
-    fun `token highlight correct`() {
-        assertArrayEquals(expectedKeys, twineSyntaxHighlighter.getTokenHighlights(iElementType))
     }
 }
