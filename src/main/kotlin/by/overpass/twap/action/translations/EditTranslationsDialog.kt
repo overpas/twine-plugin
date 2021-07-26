@@ -5,128 +5,90 @@
 package by.overpass.twap.action.translations
 
 import by.overpass.twap.lang.parsing.psi.TwineLabel
-import by.overpass.twap.lang.parsing.psi.TwineTranslation
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
-import com.intellij.ui.components.JBBox
-import com.intellij.ui.components.JBTextField
-import java.awt.Dimension
-import javax.swing.BoxLayout
-import javax.swing.JButton
+import com.intellij.ui.ToolbarDecorator
+import com.intellij.ui.table.TableView
+import com.intellij.util.ui.ColumnInfo
+import com.intellij.util.ui.ListTableModel
 import javax.swing.JComponent
-import javax.swing.JPanel
-import javax.swing.event.DocumentEvent
-import javax.swing.event.DocumentListener
-
-private typealias OnTextChanged = (locale: String, text: String) -> Unit
-
-private const val ADD_BUTTON_WIDTH = 40
-private const val ADD_BUTTON_HEIGHT = 20
-
-private val styling: JButton.() -> Unit = {
-    isBorderPainted = false
-    isOpaque = false
-    maximumSize = Dimension(ADD_BUTTON_WIDTH, ADD_BUTTON_HEIGHT)
-}
 
 /**
  * Shows UI for editing translations
  */
 class EditTranslationsDialog(
     project: Project,
-    private val twineLabel: TwineLabel,
+    twineLabel: TwineLabel,
     private val translationsModel: TranslationsModel
 ) : DialogWrapper(project) {
+
+    private val tableModel: ListTableModel<TranslationModel> = ListTableModel(
+        arrayOf(LocaleColumn(), TranslationColumn()),
+        twineLabel.translations.map { TranslationModel(it.localeValue, it.textValue) },
+    )
 
     init {
         init()
     }
 
-    override fun createCenterPanel(): JComponent = createEditTranslationsPanel(
-        twineLabel.translations,
-        translationsModel
-    )
+    override fun createCenterPanel(): JComponent = createTranslationsTable(tableModel)
+
+    override fun showAndGet(): Boolean {
+        val showAndGet = super.showAndGet()
+        tableModel.items.forEach {
+            translationsModel.setTranslation(it.locale, it.text)
+        }
+        return showAndGet
+    }
 }
 
 /**
- * Add a listener that is updated when [JBTextField] is updated
- *
- * @param onTextChange triggered when text is updated
+ * Base translation editing column
  */
-fun JBTextField.addOnTextChangeListener(onTextChange: (text: String) -> Unit) {
-    document.addDocumentListener(object : DocumentListener {
-        override fun insertUpdate(event: DocumentEvent) {
-            onTextChange(text)
-        }
+abstract class TranslationEditingColumn : ColumnInfo<TranslationModel, String>("") {
 
-        override fun removeUpdate(event: DocumentEvent) {
-            onTextChange(text)
-        }
-
-        override fun changedUpdate(event: DocumentEvent) {
-            onTextChange(text)
-        }
-    })
+    override fun isCellEditable(item: TranslationModel): Boolean = true
 }
 
 /**
- * Creates edit translation UI
- *
- * @param translations collection of [TwineTranslation]s
- * @param translationsModel model for translations editing
- * @return an instance of [JComponent] for translations editing UI
+ * Locale editing column
  */
-fun createEditTranslationsPanel(
-    translations: List<TwineTranslation>,
-    translationsModel: TranslationsModel
-): JComponent = JPanel().apply {
-    layout = BoxLayout(this, BoxLayout.Y_AXIS)
-    translations.forEach { translation ->
-        val translationBox = createTranslationBox(
-            translation.localeValue,
-            translation.textValue
-        ) { locale, text ->
-            translationsModel.setTranslation(locale, text)
-        }
-        add(translationBox)
+class LocaleColumn : TranslationEditingColumn() {
+
+    override fun valueOf(item: TranslationModel): String = item.locale
+
+    override fun setValue(item: TranslationModel, value: String) {
+        item.locale = value
     }
-    val button = JButton("+")
-    button.apply(styling)
-    button.addActionListener {
-        remove(button)
-        val translationBox = createTranslationBox(
-            "",
-            ""
-        ) { locale, text ->
-            translationsModel.setTranslation(locale, text)
-        }
-        add(translationBox)
-        add(button)
-        revalidate()
-    }
-    add(button)
 }
 
 /**
- * Creates a box for single translation
- *
- * @param locale locale of the translation
- * @param translation text of the translation
- * @param onTranslationChanged triggered when translation is updated
- * @return an instance of [JBBox] for a single translation
+ * Translation editing column
  */
-fun createTranslationBox(
-    locale: String,
-    translation: String,
-    onTranslationChanged: OnTextChanged,
-): JBBox {
-    val box = JBBox(BoxLayout.X_AXIS)
-    val localeTextField = JBTextField(locale)
-    val translationTextField = JBTextField(translation)
-    box.add(localeTextField)
-    box.add(translationTextField)
-    translationTextField.addOnTextChangeListener {
-        onTranslationChanged(localeTextField.text, it)
+class TranslationColumn : TranslationEditingColumn() {
+
+    override fun valueOf(item: TranslationModel): String = item.text
+
+    override fun setValue(item: TranslationModel, value: String) {
+        item.text = value
     }
-    return box
 }
+
+/**
+ * @param tableModel table UI model
+ * @return translations table UI
+ */
+fun createTranslationsTable(
+    tableModel: ListTableModel<TranslationModel>,
+): JComponent = ToolbarDecorator.createDecorator(TableView(tableModel))
+    .disableUpAction()
+    .disableDownAction()
+    .setAddAction {
+        tableModel.addRow(TranslationModel("", ""))
+    }
+    .setRemoveAction {
+        if (tableModel.rowCount > 1) {
+            tableModel.removeRow(tableModel.rowCount - 1)
+        }
+    }
+    .createPanel()
