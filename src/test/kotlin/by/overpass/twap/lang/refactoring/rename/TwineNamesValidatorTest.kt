@@ -11,14 +11,38 @@ class TwineNamesValidatorTest {
     @Test
     fun `nothing is a keyword`() {
         listOf("", "dfdfh", "12", "[><]").forEach {
-            assertFalse(twineNamesValidator.isKeyword(it, null))
+            assertFalse("keyword = $it", twineNamesValidator.isKeyword(it, null))
         }
     }
 
     @Test
     fun `valid identifiers`() {
-        listOf(/*"dfd", "jhbhj.hbh", */"dfv.a12.kmKdf").forEach {
-            assertTrue(twineNamesValidator.isIdentifier(it, null))
+        listOf(
+            "dfd",
+            "jhbhj.hbh",
+            "jhbhj.hbh.dfbdb",
+            "jhbhj.hBB",
+            "jhbhj.hBB.dfdfdf",
+            "jhbhj.hBB.dfdfdf.dFf",
+            "jhbhj.hBB.dfdfdf.dFF",
+            "jhbhj.hbh.a12",
+            "dfv.a12.kmkdf",
+            "dfv.a12.kmkdf._1",
+        ).forEach {
+            assertTrue("identifier = $it", twineNamesValidator.isIdentifier(it, null))
+        }
+    }
+
+    @Test
+    fun `invalid identifiers`() {
+        listOf(
+            "",
+            "jhbhj.",
+            "jhbhj..",
+            "jhbhj.bb  df.vfv",
+            ".jhbhj",
+        ).forEach {
+            assertFalse("identifier = $it", twineNamesValidator.isIdentifier(it, null))
         }
     }
 }
