@@ -4,6 +4,9 @@ import by.overpass.twap.Twine
 import com.intellij.lang.refactoring.NamesValidator
 import com.intellij.openapi.project.Project
 
+/**
+ * Validates Twine identifiers and keywords
+ */
 class TwineNamesValidator : NamesValidator {
 
     override fun isKeyword(name: String, project: Project?): Boolean = false

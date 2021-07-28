@@ -15,7 +15,7 @@ class TranslationsModelTest {
     fun `assert translations updated`() {
         val map: MutableMap<String, String> = mutableMapOf(
             "en" to "text",
-            "ru" to "текст"
+            "ru" to "текст",
         )
         val translationsModel = TranslationsModel(map)
         translationsModel.setTranslation("en", "text2")

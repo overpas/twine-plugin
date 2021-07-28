@@ -4,6 +4,10 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
+/**
+ * Tests for [TwineNamesValidator]
+ */
+@Suppress("INLINE_CLASS_CAN_BE_USED")
 class TwineNamesValidatorTest {
 
     private val twineNamesValidator = TwineNamesValidator()

@@ -23,7 +23,7 @@ class TwineLineMarkerProvider : RelatedItemLineMarkerProvider() {
 
     override fun collectNavigationMarkers(
         element: PsiElement,
-        result: NavMarkersResultCollection
+        result: NavMarkersResultCollection,
     ) {
         element.takeIf { it is PsiIdentifier }
             ?.castSafelyTo<PsiIdentifier>()

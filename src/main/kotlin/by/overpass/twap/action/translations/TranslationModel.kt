@@ -8,5 +8,5 @@ package by.overpass.twap.action.translations
  */
 data class TranslationModel(
     var locale: String,
-    var text: String
+    var text: String,
 )

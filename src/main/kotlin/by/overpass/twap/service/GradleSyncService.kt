@@ -28,7 +28,7 @@ interface GradleSyncService {
 }
 
 private inline class GradleSyncServiceImpl(
-    private val gradleSyncInvoker: GradleSyncInvoker
+    private val gradleSyncInvoker: GradleSyncInvoker,
 ) : GradleSyncService {
 
     override fun syncProject(project: Project) {
