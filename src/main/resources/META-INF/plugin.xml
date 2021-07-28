@@ -27,11 +27,14 @@
         <lang.elementManipulator forClass="by.overpass.twap.lang.parsing.psi.TwineIdentifier"
                                  implementationClass="by.overpass.twap.lang.parsing.psi.TwineIdentifierManipulator"/>
         <psi.referenceContributor implementation="by.overpass.twap.lang.reference.TwineReferenceContributor"/>
-        <refactoring.elementListenerProvider implementation="by.overpass.twap.lang.refactoring.TwineRefactoringElementListenerProvider" />
+        <refactoring.elementListenerProvider
+                implementation="by.overpass.twap.lang.refactoring.TwineRefactoringElementListenerProvider"/>
         <intentionAction>
             <className>by.overpass.twap.action.translations.EditTranslationsAction</className>
             <category>Twine</category>
         </intentionAction>
+        <lang.namesValidator language="Twine"
+                             implementationClass="by.overpass.twap.lang.refactoring.rename.TwineNamesValidator"/>
     </extensions>
 
     <actions>
