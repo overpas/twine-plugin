@@ -16,7 +16,7 @@ class FakeDialogFactory : DialogFactory {
         project: Project,
         twineLabel: TwineLabel,
         translationsModel: TranslationsModel,
-        title: String
+        title: String,
     ): DialogWrapper = object : DialogWrapper(project) {
 
         override fun createCenterPanel(): JComponent = JPanel()

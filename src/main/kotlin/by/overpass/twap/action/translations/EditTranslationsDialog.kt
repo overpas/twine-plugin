@@ -19,7 +19,7 @@ import javax.swing.JComponent
 class EditTranslationsDialog(
     project: Project,
     twineLabel: TwineLabel,
-    private val translationsModel: TranslationsModel
+    private val translationsModel: TranslationsModel,
 ) : DialogWrapper(project) {
 
     private val tableModel: ListTableModel<TranslationModel> = ListTableModel(

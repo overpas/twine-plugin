@@ -35,7 +35,7 @@ class TwineAnnotator : ExternalAnnotator<PsiFile, List<TwineAnnotator.Issue>>() 
     override fun apply(
         file: PsiFile,
         issues: List<Issue>,
-        holder: AnnotationHolder
+        holder: AnnotationHolder,
     ) {
         for ((msg, offendingNode) in issues) {
             val range = offendingNode.textRange

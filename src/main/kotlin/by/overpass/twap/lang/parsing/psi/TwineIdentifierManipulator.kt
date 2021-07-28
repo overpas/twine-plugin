@@ -13,7 +13,7 @@ class TwineIdentifierManipulator : AbstractElementManipulator<TwineIdentifier>()
     override fun handleContentChange(
         element: TwineIdentifier,
         range: TextRange,
-        newContent: String?
+        newContent: String?,
     ): TwineIdentifier {
         newContent?.let {
             return element.replace(element.project.createTwineIdentifier(newContent)) as TwineIdentifier

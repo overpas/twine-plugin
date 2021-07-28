@@ -58,7 +58,7 @@ class TwineParserDefinition : ParserDefinition {
             PSIElementTypeFactory.defineLanguageIElementTypes(
                 TwineLanguage,
                 TwineParser.VOCABULARY.tokenNames,
-                TwineParser.ruleNames
+                TwineParser.ruleNames,
             )
             tokens = PSIElementTypeFactory.getTokenIElementTypes(TwineLanguage)
             rules = PSIElementTypeFactory.getRuleIElementTypes(TwineLanguage)

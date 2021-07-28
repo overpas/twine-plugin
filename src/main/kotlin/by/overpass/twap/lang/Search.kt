@@ -56,7 +56,7 @@ fun Project.findJavaFiles(): List<PsiFile> = findFiles(JavaFileType.INSTANCE)
  */
 fun Project.findFiles(
     fileType: FileType,
-    scope: GlobalSearchScope = projectScope
+    scope: GlobalSearchScope = projectScope,
 ): List<PsiFile> =
     FileTypeIndex.getFiles(fileType, scope)
         .mapNotNull { PsiManager.getInstance(this).findFile(it) }

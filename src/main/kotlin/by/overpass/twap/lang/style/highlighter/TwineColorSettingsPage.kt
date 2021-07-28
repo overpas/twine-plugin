@@ -44,7 +44,7 @@ class TwineColorSettingsPage : ColorSettingsPage {
             AttributesDescriptor("Id", TwineSyntaxHighlighter.TextAttributes.id),
             AttributesDescriptor("Comment", TwineSyntaxHighlighter.TextAttributes.comment),
             AttributesDescriptor("Text", TwineSyntaxHighlighter.TextAttributes.text),
-            AttributesDescriptor("Locale", TwineSyntaxHighlighter.TextAttributes.locale)
+            AttributesDescriptor("Locale", TwineSyntaxHighlighter.TextAttributes.locale),
         )
     }
 }
