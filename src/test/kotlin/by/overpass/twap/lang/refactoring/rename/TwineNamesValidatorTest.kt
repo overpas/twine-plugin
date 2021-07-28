@@ -12,6 +12,9 @@ class TwineNamesValidatorTest {
 
     private val twineNamesValidator = TwineNamesValidator()
 
+    /**
+     * Test that none of the strings are twine keywords
+     */
     @Test
     fun `nothing is a keyword`() {
         listOf("", "dfdfh", "12", "[><]").forEach {
@@ -19,6 +22,9 @@ class TwineNamesValidatorTest {
         }
     }
 
+    /**
+     * Test that all of the strings valid twine identifiers
+     */
     @Test
     fun `valid identifiers`() {
         listOf(
@@ -37,6 +43,9 @@ class TwineNamesValidatorTest {
         }
     }
 
+    /**
+     * Test that all of the strings are invalid twine identifiers
+     */
     @Test
     fun `invalid identifiers`() {
         listOf(
