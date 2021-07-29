@@ -19,6 +19,8 @@ import com.intellij.psi.xml.XmlAttributeValue
 
 private typealias RenameProcessorFactory = StringResourceRenameProcessorFactory
 
+val underscoreReplacement: String.() -> String = { replace('_', '.') }
+
 /**
  * Reference to [by.overpass.twap.lang.parsing.psi.TwineIdentifier] implementation
  */

@@ -78,16 +78,16 @@ class TwineLabel(node: ASTNode) : TwinePsiElement(node) {
      * @param translations map of locales to texts
      */
     fun updateTranslations(translations: Map<String, String>) {
-        PsiTreeUtil.findChildOfType(this, TwineIdentifier::class.java)
-            ?.text
-            ?.let { id ->
-                val dummyFile = project.createDummyTwineFileWithLabelAndTranslations(id, translations)
-                PsiTreeUtil.findChildOfType(dummyFile, TwineLabel::class.java)
-                    ?.node
-                    ?.let { newLabelNode ->
-                        node.treeParent.replaceChild(node, newLabelNode)
-                    }
-            }
+        val twineComment = PsiTreeUtil.findChildOfType(this, TwineComment::class.java)?.text
+        val twineIdentifier = PsiTreeUtil.findChildOfType(this, TwineIdentifier::class.java)?.text
+        twineIdentifier?.let { id ->
+            val dummyFile = project.createDummyTwineFileWithLabelAndTranslations(id, translations, twineComment)
+            PsiTreeUtil.findChildOfType(dummyFile, TwineLabel::class.java)
+                ?.node
+                ?.let { newLabelNode ->
+                    node.treeParent.replaceChild(node, newLabelNode)
+                }
+        }
     }
 }
 
@@ -154,14 +154,16 @@ fun Project.createDummyTwineFileWithId(id: String): TwineFile = createTwineFile(
 /**
  * @param label twine label
  * @param translations locale to text map
+ * @param comment comment if present
  * @return dummy [TwineFile] containing a dummy label with [translations]
  */
 fun Project.createDummyTwineFileWithLabelAndTranslations(
     label: String,
-    translations: Map<String, String>
+    translations: Map<String, String>,
+    comment: String?,
 ): TwineFile = createTwineFile(
     "dummy",
-    createDummyTwineFileContent(label, translations)
+    createDummyTwineFileContent(label, translations, comment)
 )
 
 /**
@@ -184,9 +186,14 @@ fun Project.createTwineFile(fileName: String, text: String): TwineFile = PsiFile
 /**
  * @param label the new label
  * @param translations the new translations (locale to text map)
+ * @param comment if present
  * @return string content for a dummy twine file
  */
-fun createDummyTwineFileContent(label: String, translations: Map<String, String>): String =
+fun createDummyTwineFileContent(
+    label: String,
+    translations: Map<String, String>,
+    comment: String?
+): String =
     """
     [[dummy_section]]
         [$label]
@@ -194,5 +201,7 @@ ${
         translations.map { (locale, translation) -> "            $locale = $translation\n" }
             .toList()
             .fold("") { acc, translation -> "$acc$translation" }
+    }${
+        comment?.let { "            comment = $it\n" } ?: ""
     }
     """.trimIndent()

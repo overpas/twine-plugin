@@ -20,22 +20,22 @@ class TwineSyntaxHighlighter : SyntaxHighlighterBase() {
 
         val id: TextAttributesKey = createTextAttributesKey(
             "TWINE_ID",
-            DefaultLanguageHighlighterColors.INSTANCE_METHOD
+            DefaultLanguageHighlighterColors.INSTANCE_METHOD,
         )
         val idKeys = arrayOf(id)
         val comment: TextAttributesKey = createTextAttributesKey(
             "TWINE_COMMENT",
-            DefaultLanguageHighlighterColors.LINE_COMMENT
+            DefaultLanguageHighlighterColors.LINE_COMMENT,
         )
         val commentKeys = arrayOf(comment)
         val text: TextAttributesKey = createTextAttributesKey(
             "TWINE_TEXT",
-            DefaultLanguageHighlighterColors.STRING
+            DefaultLanguageHighlighterColors.STRING,
         )
         val textKeys = arrayOf(text)
         val locale: TextAttributesKey = createTextAttributesKey(
             "TWINE_LOCALE",
-            DefaultLanguageHighlighterColors.KEYWORD
+            DefaultLanguageHighlighterColors.KEYWORD,
         )
         val localeKeys = arrayOf(locale)
     }

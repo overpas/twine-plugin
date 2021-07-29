@@ -27,7 +27,7 @@ class DialogFactoryTest : LightIdeaTestCase() {
                 )
             ),
             TranslationsModel(),
-            "title"
+            "title",
         )
         assertTrue(dialog is EditTranslationsDialog)
         assertEquals(dialog.title, "title")

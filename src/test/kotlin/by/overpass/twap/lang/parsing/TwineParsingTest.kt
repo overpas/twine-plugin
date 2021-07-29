@@ -9,7 +9,7 @@ import com.intellij.testFramework.ParsingTestCase
 class TwineParsingTest : ParsingTestCase(
     "",
     Twine.EXT,
-    TwineParserDefinition()
+    TwineParserDefinition(),
 ) {
 
     fun testParsingTestData() {

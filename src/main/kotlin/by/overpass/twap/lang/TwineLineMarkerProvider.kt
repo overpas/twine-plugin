@@ -5,6 +5,7 @@
 package by.overpass.twap.lang
 
 import by.overpass.twap.Twine
+import by.overpass.twap.lang.reference.identifier.underscoreReplacement
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.codeInsight.navigation.NavigationGutterIconBuilder
@@ -22,7 +23,7 @@ class TwineLineMarkerProvider : RelatedItemLineMarkerProvider() {
 
     override fun collectNavigationMarkers(
         element: PsiElement,
-        result: NavMarkersResultCollection
+        result: NavMarkersResultCollection,
     ) {
         element.takeIf { it is PsiIdentifier }
             ?.castSafelyTo<PsiIdentifier>()
@@ -31,6 +32,7 @@ class TwineLineMarkerProvider : RelatedItemLineMarkerProvider() {
             ?.let { Twine.androidStringResourceRegex.find(it.text) }
             ?.groupValues
             ?.get(1)
+            ?.run(underscoreReplacement)
             ?.let { element.project.findTwineIds(it) }
             ?.takeIf { it.isNotEmpty() }
             ?.let {

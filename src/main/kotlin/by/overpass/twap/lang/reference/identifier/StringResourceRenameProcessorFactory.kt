@@ -24,7 +24,7 @@ interface StringResourceRenameProcessorFactory {
     fun create(
         project: Project,
         myPsiElement: PsiElement,
-        newName: String
+        newName: String,
     ): RenameProcessor
 
     companion object {
@@ -42,13 +42,13 @@ private object DefaultStringResourceRenameProcessorFactory : StringResourceRenam
     override fun create(
         project: Project,
         myPsiElement: PsiElement,
-        newName: String
+        newName: String,
     ): RenameProcessor = RenameProcessor(
         project,
         myPsiElement,
         newName,
         GlobalSearchScope.projectScope(project),
         false,
-        false
+        false,
     )
 }

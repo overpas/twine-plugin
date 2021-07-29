@@ -14,7 +14,7 @@ class TwineReferenceContributor : PsiReferenceContributor() {
     override fun registerReferenceProviders(registrar: PsiReferenceRegistrar) {
         registrar.registerReferenceProvider(
             psiElement(PsiLiteralExpression::class.java),
-            TwineIdentifierStringLiteralReferenceProvider()
+            TwineIdentifierStringLiteralReferenceProvider(),
         )
     }
 }

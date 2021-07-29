@@ -25,7 +25,7 @@ interface DialogFactory {
         project: Project,
         twineLabel: TwineLabel,
         translationsModel: TranslationsModel,
-        title: String
+        title: String,
     ): DialogWrapper
 
     companion object {
@@ -42,7 +42,7 @@ private object DefaultDialogFactory : DialogFactory {
         project: Project,
         twineLabel: TwineLabel,
         translationsModel: TranslationsModel,
-        title: String
+        title: String,
     ): DialogWrapper = EditTranslationsDialog(project, twineLabel, translationsModel).apply {
         this.title = title
     }
