@@ -51,8 +51,8 @@ runIde {
 }
 
 patchPluginXml {
-    changeNotes """
-      Initial implementation"""
+    changeNotes.set("""
+      Initial implementation""")
 }
 
 test {
