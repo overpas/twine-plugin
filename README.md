@@ -6,7 +6,7 @@
 
 Android Studio support for twine localization tool (https://github.com/scelis/twine)
 
-# Demo
+## Demo
 
 <p align="left">
   <img src="images/twine_file.png" width="500" hspace="15"></br>
@@ -14,8 +14,8 @@ Android Studio support for twine localization tool (https://github.com/scelis/tw
   <img src="images/edit_translations_ui.png" width="700" hspace="15">
 </p>
 
-# Usage
+## Usage
 
-- Install the plugin from <a href="https://plugins.jetbrains.com/plugin/17310-twine-android">Jetbrains Marketplace</a>.
-- In order for the plugin to work correctly <a href="https://github.com/scelis/twine">Twine</a> should be configured in the project. 
-- Your Twine file is expected to have .twine extension.
+-  Install the plugin from <a href="https://plugins.jetbrains.com/plugin/17310-twine-android">Jetbrains Marketplace</a>.
+-  In order for the plugin to work correctly <a href="https://github.com/scelis/twine">Twine</a> should be configured in the project. 
+-  Your Twine file is expected to have .twine extension.
