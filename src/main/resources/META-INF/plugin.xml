@@ -4,7 +4,15 @@
     <vendor email="pckeycalculator@gmail.com">overpass</vendor>
 
     <description><![CDATA[
-    Twine localization tool support for Android Studio.<br>
+    <p><a href="https://github.com/scelis/twine">Twine</a> localization tool support for Android Studio.</p>
+    <p>Improves UX when working with Twine files. Provides rename refactoring for Twine elements, navigation to them from code,
+     translations editing UI, and other features.</p>
+     </br>
+     <p>Note that in order for the plugin to work correctly the following conditions should be met:</p>
+     <ul>
+        <li>Twine should be configured in the project as described <a href="https://github.com/scelis/twine#android-studiogradle">here</a>;</li>
+        <li>Your Twine file should have .twine extension.</li>
+     </ul>
     ]]></description>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
