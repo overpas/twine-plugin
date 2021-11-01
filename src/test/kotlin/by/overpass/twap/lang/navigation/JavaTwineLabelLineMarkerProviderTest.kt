@@ -11,6 +11,9 @@ import org.junit.Test
  */
 class JavaTwineLabelLineMarkerProviderTest : JavaCodeInsightFixtureTestCase() {
 
+    /**
+     * Test that the twine gutter icon is present
+     */
     @Test
     fun testGutterIconIsDisplayed() = with(myFixture) {
         configureByText(

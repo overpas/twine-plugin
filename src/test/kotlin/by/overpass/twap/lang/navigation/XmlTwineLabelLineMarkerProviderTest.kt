@@ -32,6 +32,9 @@ class XmlTwineLabelLineMarkerProviderTest : JavaCodeInsightFixtureTestCase() {
                 </FrameLayout>
             """.trimIndent()
 
+    /**
+     * Test that the twine gutter icon is present
+     */
     @Test
     fun testGutterIconIsVisible() = with(myFixture) {
         configureByText(
