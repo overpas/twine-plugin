@@ -45,8 +45,8 @@ intellij {
 runIde {
 
     if (Os.isFamily(Os.FAMILY_MAC)) {
-//        // to run with the real Android Studio
-//        ideDirectory = '/Applications/Android Studio.app/Contents'
+        // to run with the real Android Studio
+//        ideDir.set(file("/Applications/Android Studio.app/Contents"))
     }
 }
 
