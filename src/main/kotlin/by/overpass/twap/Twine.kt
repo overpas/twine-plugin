@@ -10,5 +10,6 @@ object Twine {
     const val EXT = "twine"
     val icon = IconLoader.getIcon("/icons/ic_twine.png", Twine.javaClass)
     val androidStringResourceRegex = "R\\.string\\.(.+)".toRegex()
+    val androidStringXmlReferenceRegex = "@string/(.+)".toRegex()
     val twineIdentifierRegex = "[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*".toRegex()
 }
